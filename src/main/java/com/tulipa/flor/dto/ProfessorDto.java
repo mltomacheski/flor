@@ -1,5 +1,7 @@
 package com.tulipa.flor.dto;
 
+import com.tulipa.flor.modelo.Professor;
+
 public class ProfessorDto {
     public String nome;
     public String cpf;
@@ -31,4 +33,8 @@ public class ProfessorDto {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    public Professor novoProfessor(){
+        return new Professor(nome, cpf);
+    }   
 }

@@ -1,6 +1,10 @@
 package com.tulipa.flor.modelo;
 
+import jakarta.persistence.Id;
+
 public class Professor {
+    @Id
+    private Long id;
     public String nome;
     public String cpf;
 
@@ -34,7 +38,7 @@ public class Professor {
         return "Professor [nome=" + nome + ", cpf=" + cpf + "]";
     }
 
-    @Override
+    @Override // Sobrescrito
     public int hashCode() {
         final int prime = 31;
         int result = 1;
