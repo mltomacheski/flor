@@ -1,11 +1,16 @@
 package com.tulipa.flor.modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Professor {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     public String nome;
     public String cpf;
@@ -37,7 +42,7 @@ public class Professor {
 
     @Override
     public String toString() {
-        return "Professor [nome=" + nome + ", cpf=" + cpf + "]";
+        return "Professor [id=" + id + ", nome=" + nome + ", cpf=" + cpf + "]";
     }
 
     @Override // Sobrescrito
@@ -71,6 +76,11 @@ public class Professor {
         return true;
     }
 
-    
-    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }    
 }
