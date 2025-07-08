@@ -1,6 +1,7 @@
 package com.tulipa.flor.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jersey.JerseyProperties.Servlet;
@@ -35,7 +36,14 @@ public class ProfessorController {
         return"<h1>Mari<h1>"; // return => Devolve o retorno para quem chamou 
     }
 
-    @PostMapping(value ="/insert")
+
+    @GetMapping( value =  "/listaprofessor") 
+    public List<Professor> findAll(){
+        return professorRepository.findAll();
+
+    }
+
+    @PostMapping(value = "/insert")
     public ResponseEntity<?> insert(@RequestBody ProfessorDto professorDto) {
 
         Professor professor = professorDto.novoProfessor();
@@ -51,4 +59,10 @@ public class ProfessorController {
 
         return ResponseEntity.created(uri).body(professor);
     }
+
+
+
+
+
+
 }
