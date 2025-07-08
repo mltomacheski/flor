@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,7 +59,27 @@ public class ProfessorController {
         return ResponseEntity.ok(professorBanco.get());
     }
 
-    
+
+    @GetMapping( value = "/consultapornome/{nome}" )
+    public ResponseEntity <Professor> buscarpornome(@PathVariable String nome ) {
+        Professor professorBanco =  professorRepository.findByNome(nome);
+        return ResponseEntity.ok(professorBanco);
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Professor> atualizarProfessor(@PathVariable Long id, @RequestBody Professor professorAtualizado) {
+        Professor professor = professorRepository.findById(id).get(); 
+
+        professor.setNome(professorAtualizado.getNome());
+        professor.setCpf(professorAtualizado.getCpf());
+
+        professorRepository.save(professor);
+
+        return ResponseEntity.ok(professor);
+    }
+
+
     @PostMapping(value = "/insert")
     public ResponseEntity<?> insert(@RequestBody ProfessorDto professorDto) {
 
